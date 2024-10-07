@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logging_mod"
+version = "0.1.0"
+description = "A small Python package for logging"
+authors = [
+    { name = "Nicolas Hochuli", email = "nhochuli@ethz.ch" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# Define the packages to include
+[tool.setuptools.packages.find]
+where = ["logging_mod"]
+
+
+[project.scripts]
+# Specify any command-line scripts, if needed
+# 'my-cli-tool = my_package.module:main_function'

@@ -1,0 +1,45 @@
+{
+  "disable_existing_loggers": true,
+  "formatters": {
+    "console": {
+      "()": "coloredlogs.ColoredFormatter",
+      "format": "[%(asctime)s - %(levelname)s] - %(message)s"
+    },
+    "custom": {
+      "()": "origen.logger.logger.MultiLineFormatter",
+      "format": "[%(asctime)s - %(filename)s - %(levelname)s] - %(message)s"
+    },
+    "datetime": {
+      "format": "[%(asctime)s - %(name)s - %(levelname)s] - %(message)s"
+    },
+    "simple": {
+      "format": "%(message)s"
+    }
+  },
+  "handlers": {
+    "console": {
+      "class": "logging.StreamHandler",
+      "formatter": "console",
+      "level": "DEBUG",
+      "stream": "ext://sys.stdout"
+    },
+    "info_file_handler": {
+      "backupCount": 20,
+      "class": "logging.handlers.RotatingFileHandler",
+      "encoding": "utf8",
+      "filename": "info.log",
+      "formatter": "custom",
+      "level": "INFO",
+      "maxBytes": 10485760,
+      "mode": "w"
+    }
+  },
+  "root": {
+    "handlers": [
+      "console",
+      "info_file_handler"
+    ],
+    "level": "INFO"
+  },
+  "version": 1
+}

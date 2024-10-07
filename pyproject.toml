@@ -17,11 +17,16 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+    "coloredlogs",
+]
 
-# Define the packages to include
-[tool.setuptools.packages.find]
-where = ["logging_mod"]
+## Define the packages to include
+#[tool.setuptools.packages.find]
+#where = ["logging_mod"]
 
+[project.urls]
+Repository = "https://github.com/nicolas-git/logging_mod.git"
 
 [project.scripts]
 # Specify any command-line scripts, if needed

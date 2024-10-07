@@ -6,7 +6,7 @@
       "format": "[%(asctime)s - %(levelname)s] - %(message)s"
     },
     "custom": {
-      "()": "origen.logger.logger.MultiLineFormatter",
+      "()": "logging_mod.logger.MultiLineFormatter",
       "format": "[%(asctime)s - %(filename)s - %(levelname)s] - %(message)s"
     },
     "datetime": {

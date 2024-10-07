@@ -1,0 +1,9 @@
+name: logging_mod
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip>=22.3
+  - pandas
+  # Formatting and linting tools:
+  - coloredlogs

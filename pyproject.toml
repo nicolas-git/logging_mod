@@ -21,12 +21,11 @@ dependencies = [
     "coloredlogs",
 ]
 
-## Define the packages to include
-#[tool.setuptools.packages.find]
-#where = ["logging_mod"]
-
 [project.urls]
 Repository = "https://github.com/nicolas-git/logging_mod.git"
+
+[tool.setuptools.package-data]
+'src' = ['*.json']
 
 [project.scripts]
 # Specify any command-line scripts, if needed

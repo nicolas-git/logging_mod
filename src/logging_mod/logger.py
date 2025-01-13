@@ -43,7 +43,8 @@ def get_logger() -> logging.Logger:
 
 
 def setup_job_dir(
-        output: Path, verbosity: int, log_id: Path, rm_exist: bool = True, optuna_override: Optional[bool] = False
+        output: Path, verbosity: int, log_id: Path, rm_exist: bool = True, optuna_override: Optional[bool] = False,
+        parallel_access_safety: bool = False,
 ) -> Path:
     """Sets a logging directory and configures logging. The dir id is set either
     incrementally or according to --log_id option.
@@ -58,7 +59,8 @@ def setup_job_dir(
                     From 0 (exceptions) to 3 (debug)
     rm_exist: bool: If existing job_dir should be removed or not.
     optuna_override: Optional bool: If True, the log file will only log the specified level, otherwise everything.
-
+    parallel_access_safety: bool: If True, the log directory can already exist but will not be purged, which causes
+    problem in parallel access.
     Returns
     -------
     Path: Path to the log dir.
@@ -75,8 +77,9 @@ def setup_job_dir(
 
     log_dir = log_dir_base / log_id
 
-    if log_dir.exists() and log_dir.is_dir() and rm_exist:
-        shutil.rmtree(log_dir)
+    if not parallel_access_safety:
+        if log_dir.exists() and log_dir.is_dir() and rm_exist:
+            shutil.rmtree(log_dir)
 
     log_dir.mkdir(parents=True, exist_ok=rm_exist)
     _setup_logging(log_dir, default_level=verbosity, optuna_override=optuna_override)

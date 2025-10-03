@@ -19,15 +19,17 @@ LOG_LEVELS = {0: logging.ERROR, 1: logging.WARNING, 2: logging.INFO, 3: logging.
 
 
 
-def get_logger() -> logging.Logger:
+def get_logger(name: Optional[str] = None) -> logging.Logger:
     """Get an instance of a logger with a name.
 
     Returns
     -------
     Logging instance.
     """
-    filename = Path(inspect.stack()[1].filename).stem
-    logger = logging.getLogger(filename)
+    if name is None:
+        name = Path(inspect.stack()[1].filename).stem
+
+    logger = logging.getLogger(name)
     logger.setLevel(LOG_LEVELS[3])
     return logger
 
